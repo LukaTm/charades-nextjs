@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+        "paths": {
+            "@/*": ["./*"]
+        }
+    },
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        ".next/types/**/*.ts",
+        "mongo/models/User.js",
+        "app/layout.jsx",
+        "app/login/page.tsx",
+        "app/main/page.jsx",
+        "app/api/getwords/get-words.sx",
+        "app/api/getwords/route.js",
+        "app/api/get-custom-word/route.js",
+        "app/api/create-custom-word/route.ts",
+        "components/LoginPage.js",
+        "app/api/signup/route.js"
+    ],
+    "exclude": ["node_modules"]
+}
