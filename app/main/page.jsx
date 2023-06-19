@@ -17,11 +17,6 @@ import { useSession } from "next-auth/react";
 import { useCookies } from "react-cookie";
 import connectDB from "@/mongo/connectDB";
 
-export const metadata = {
-    title: "Mēmais šovs",
-    description: "Ģenerē mēmā šova vārdus",
-};
-
 export default function Home() {
     // CONTEXT
     const { rerun, SetTheRerun, defaultLangRef, defaultLang, lang, setLang } =

@@ -294,6 +294,12 @@ h1 {
         padding-right: calc(100% - 725px);
     }
 }
+@media (max-width: 734px) {
+    .controls {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
 @media (max-width: 612px) {
     .controls label {
         font-size: 0.7em;
@@ -308,8 +314,8 @@ h1 {
         font-size: 0.7em;
     }
     .controls {
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 12px;
+        padding-right: 12px;
     }
 }
 
@@ -349,7 +355,7 @@ h1 {
 
 @media (max-width: 556px) {
     .controls {
-        width: calc(100vw - 20px);
+        width: calc(100vw - 40px);
     }
     .num-submit-outer-container {
         flex-direction: column;
@@ -359,24 +365,10 @@ h1 {
         height: 30px;
     }
 }
-/* @media (max-width: 460px) {
-    .controls {
-        width: 430px;
-    }
-} */
-
-/* @media (max-width: 383px) {
-    .controls {
-        padding: 26px;
-    }
-    .controls {
-        width: 287px;
-    }
-} */
 
 @media (max-width: 500px) {
     .custom-word-container {
-        width: calc(100% - 40px);
+        width: calc(100% - 90px);
     }
 
     .custom-word-container * {
@@ -387,49 +379,27 @@ h1 {
     }
 }
 
-@media (max-width: 435px) {
-    /* .controls {
-        width: 410px;
-    } */
-
-    /* .controls label {
-        font-size: 3vw;
-    }
-    .controls .generate-btn {
-        font-size: 3vw;
-    }
-    .controls button {
-        font-size: 3vw;
-    }
-    .controls select {
-        font-size: 3vw;
-    } */
-
+@media (max-width: 467px) {
     .h1-container h1 {
-        font-size: 12vw;
+        font-size: 10vw;
     }
-    .logout-btn {
+    .header-btn-container .logout-btn,
+    .header-btn-container .login-btn {
         font-size: 4vw;
     }
-}
-
-@media (max-width: 440px) {
     .controls {
         flex-direction: column;
     }
-}
-@media (max-width: 432px) {
     .custom-word-container * {
         font-size: 0.95em;
         font-weight: bold;
     }
     #custom-word-submit-btn {
-        padding: 5px;
         font-size: 0.8rem;
     }
-    /* .word-item.one-words-size {
-        font-size: 7vw;
-    } */
+}
+
+@media (max-width: 432px) {
     .word-item.ten-words-size {
         font-size: 1em;
     }
@@ -438,11 +408,11 @@ h1 {
     }
 }
 
-@media (max-width: 395px) {
+@media (max-width: 430px) {
     .custom-word-container {
         display: flex;
         flex-direction: column;
-        width: calc(100vw - 30px);
+        width: calc(100vw - 90px);
     }
     .custom-word-container-inside {
         flex-direction: column;
@@ -451,24 +421,26 @@ h1 {
         margin: 0;
         margin-top: 5px;
     }
-    /* .controls {
-        width: calc(100vw - 100px);
-    } */
+
+    .header-btn-container .login-btn {
+        font-size: 4vw;
+    }
 }
 @media (max-width: 236px) {
-    .logout-btn {
-        font-size: 0.6em;
+    .header-btn-container .logout-btn,
+    .header-btn-container .login-btn {
+        font-size: 0.55em;
     }
 }
 @media (max-width: 300px) {
     .word-item.one-words-size {
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
     .word-item.five-words-size {
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
     .word-item.ten-words-size {
-        font-size: 1em;
+        font-size: 0.95em;
     }
 }
 @media (max-width: 197px) {
