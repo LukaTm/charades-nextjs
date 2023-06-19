@@ -37,7 +37,8 @@
         "app/api/get-custom-word/route.js",
         "app/api/create-custom-word/route.ts",
         "components/LoginPage.js",
-        "app/api/signup/route.js"
+        "app/api/signup/route.js",
+        "app/api/auth/[...nextauth]/route.js"
     ],
     "exclude": ["node_modules"]
 }

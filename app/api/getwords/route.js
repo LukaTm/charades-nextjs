@@ -1,9 +1,5 @@
 import connectDB from "@/mongo/connectDB";
-import { Model } from "mongoose";
 
-import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
 import CharadesWords from "@/mongo/models/Charades-words";
 import CharadesWordsLatvians from "@/mongo/models/Charades-words-latvians";
 import CharadesWordsRussians from "@/mongo/models/Charades-words-russians";

@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 const ObjectId = require("mongodb").ObjectId;
 import User from "@/mongo/models/User";
 
-//! USE DATABASE
 let customExistingArray = [];
 
 import { getServerSession } from "next-auth";

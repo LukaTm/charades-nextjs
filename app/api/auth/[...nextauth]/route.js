@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import type { NextAuthOptions } from "next-auth";
+// import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import connectDB from "@/mongo/connectDB";
@@ -7,7 +7,7 @@ import User from "@/mongo/models/User";
 
 import bcrypt from "bcrypt";
 
-export const authOptions: NextAuthOptions = {
+export const authOptions = {
     session: {
         strategy: "jwt",
     },
@@ -26,11 +26,12 @@ export const authOptions: NextAuthOptions = {
             },
             async authorize(credentials, req) {
                 // check to see if email and password is there
-                if (!credentials) {
-                    throw new Error("Please enter an email and password");
-                }
-                if (!credentials.email || !credentials.password) {
-                    throw new Error("Please enter an email and password");
+                if (
+                    !credentials ||
+                    !credentials.email ||
+                    !credentials.password
+                ) {
+                    return null;
                 }
 
                 const { email, password } = credentials;
@@ -41,7 +42,7 @@ export const authOptions: NextAuthOptions = {
 
                 // if no user was found
                 if (!user) {
-                    throw new Error("No user found");
+                    return null;
                 }
                 // check to see if password matches
                 const passwordMatch = await bcrypt.compare(
@@ -51,7 +52,7 @@ export const authOptions: NextAuthOptions = {
 
                 // if password does not match
                 if (!passwordMatch) {
-                    throw new Error("Incorrect password");
+                    return null;
                 }
                 return {
                     email: email,

@@ -54,7 +54,7 @@ function LoginPage({
     };
 
     return (
-        <div className="login-container z-20">
+        <div className="login-container z-50">
             <div
                 className={
                     currentURL === "http://localhost:3000/login"
