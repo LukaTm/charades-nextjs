@@ -32,7 +32,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
     margin-top: 150px;
 }
 
@@ -243,7 +242,7 @@ h1 {
 .header-btn-container {
     display: flex;
     width: 100%;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .logout-btn,
@@ -313,6 +312,17 @@ h1 {
     }
 }
 
+@media (max-width: 600px) {
+    .word-item.one-words-size {
+        font-size: 7vw;
+    }
+    .word-item.ten-words-size {
+        font-size: 3.5vw;
+    }
+    .word-item.five-words-size {
+        font-size: 5vw;
+    }
+}
 @media (max-width: 550px) {
     .h1-container {
         text-align: center;
@@ -363,20 +373,23 @@ h1 {
     }
 } */
 
-@media (max-width: 420px) {
+@media (max-width: 500px) {
+    .custom-word-container {
+        width: calc(100% - 40px);
+    }
+
     .custom-word-container * {
-        font-size: 0.95em;
-        font-weight: bold;
+        font-size: 3.5vw;
     }
     #custom-word-submit-btn {
-        padding: 5px;
         font-size: 0.8rem;
     }
 }
-@media (max-width: 378px) {
-    .controls {
-        width: 360px;
-    }
+
+@media (max-width: 435px) {
+    /* .controls {
+        width: 410px;
+    } */
 
     /* .controls label {
         font-size: 3vw;
@@ -399,7 +412,32 @@ h1 {
     }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 440px) {
+    .controls {
+        flex-direction: column;
+    }
+}
+@media (max-width: 432px) {
+    .custom-word-container * {
+        font-size: 0.95em;
+        font-weight: bold;
+    }
+    #custom-word-submit-btn {
+        padding: 5px;
+        font-size: 0.8rem;
+    }
+    /* .word-item.one-words-size {
+        font-size: 7vw;
+    } */
+    .word-item.ten-words-size {
+        font-size: 1em;
+    }
+    .word-item.five-words-size {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 395px) {
     .custom-word-container {
         display: flex;
         flex-direction: column;
@@ -419,5 +457,26 @@ h1 {
 @media (max-width: 236px) {
     .logout-btn {
         font-size: 0.6em;
+    }
+}
+@media (max-width: 300px) {
+    .word-item.one-words-size {
+        font-size: 1.5em;
+    }
+    .word-item.five-words-size {
+        font-size: 1.3em;
+    }
+    .word-item.ten-words-size {
+        font-size: 1em;
+    }
+}
+@media (max-width: 197px) {
+    .controls {
+        width: 180px;
+    }
+}
+@media (max-width: 168px) {
+    .custom-word-container {
+        width: 140px;
     }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import "./globals.css";
+// import "./globals.css";
 import { Inter } from "next/font/google";
 import AuthContext from "../store/context";
 import { useRef, useState, useEffect } from "react";

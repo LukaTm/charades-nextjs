@@ -23,14 +23,6 @@ export const metadata = {
 };
 
 export default function Home() {
-    // CONNECT TO DB
-    useEffect(() => {
-        const Connect = async () => {
-            await connectDB();
-        };
-        Connect();
-    }, []);
-
     // CONTEXT
     const { rerun, SetTheRerun, defaultLangRef, defaultLang, lang, setLang } =
         useContext(AuthContext);
@@ -102,12 +94,7 @@ export default function Home() {
             // setGuestAccount(false);
             setStatusHelper(false);
         }
-        if (
-            guestAccount &&
-            statusHelper &&
-            currentURL !== "http://localhost:3000/login" &&
-            currentURL !== "http://localhost:3000/signup"
-        ) {
+        if (guestAccount && statusHelper) {
             router.push(`/main?lang=${defaultLang}`);
         } else {
             setIsAuthenticated(true);
@@ -127,7 +114,6 @@ export default function Home() {
         removeGuestUser,
         statusHelper,
     ]);
-    //----------
 
     const handleOptionChange = (event) => {
         const selectedValue = event.target.value;
@@ -280,15 +266,10 @@ export default function Home() {
             try {
                 setWords([]);
                 setIsLoading(true);
-                const response = await axios.post(
-                    `/api/get-custom-word`,
-                    { numWords: numWords }
-                    // {
-                    //     withCredentials: true, // Include cookies in the request
-                    // }
-                );
+                const response = await axios.post(`/api/get-custom-word`, {
+                    numWords: numWords,
+                });
                 if (response.data === undefined) {
-                    // ! FOR NOW
                     setWords(["No words found"]);
                 } else {
                     setWords(response.data.randomArray);
@@ -324,13 +305,9 @@ export default function Home() {
     const handleCustomWord = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post(
-                `/api/create-custom-word`,
-                { customWord: customWord }
-                // {
-                //     withCredentials: true, // Include cookies in the request
-                // }
-            );
+            const response = await axios.post(`/api/create-custom-word`, {
+                customWord: customWord,
+            });
             if (response.status === 201) {
                 setCustomWord("");
                 setErrorMessage("");
@@ -351,13 +328,6 @@ export default function Home() {
 
     const handleLogout = async () => {
         try {
-            // const response = await axios.post(
-            //     `http://localhost:8080/api/logout`,
-            //     {},
-            //     {
-            //         withCredentials: true, // Include cookies in the request
-            //     }
-            // );
             const response = await signOut({ redirect: false });
 
             setIsAuthenticated(false);
@@ -523,7 +493,6 @@ export default function Home() {
                                 </option>
 
                                 <option value="option2">
-                                    {" "}
                                     {language === "English"
                                         ? "True"
                                         : language === "Russian"

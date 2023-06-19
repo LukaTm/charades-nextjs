@@ -81,7 +81,7 @@ export default function SignUpPage({
             resetLastName();
             resetEmail();
 
-            loginModalHelper ? Login() : router.push("/login"); // Redirect
+            loginModalHelper && Login(); // Redirect
         } catch (error) {
             // Handle error
             console.log(error.response.data);
