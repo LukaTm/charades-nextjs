@@ -15,7 +15,6 @@ import { useContext } from "react";
 import { useSession } from "next-auth/react";
 
 import { useCookies } from "react-cookie";
-import connectDB from "@/mongo/connectDB";
 
 export default function Home() {
     // CONTEXT
@@ -28,8 +27,12 @@ export default function Home() {
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [loadingCustomWord, setloadingCustomWord] = useState(false);
+    const [successCutsomWordMessage, setSuccessCutsomWordMessage] =
+        useState(false);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [removeGuestUser, setRemoveGuestUser] = useState(false);
+    const [emptyWordMessage, setEmptyWordMessage] = useState(false);
     const [guestAccount, setGuestAccount] = useState(true);
     const [statusHelper, setStatusHelper] = useState(true);
     const [userStatus, setUserStatus] = useState("");
@@ -40,7 +43,7 @@ export default function Home() {
     const [category, setCategory] = useState("Easy");
     const [language, setLanguage] = useState("English");
     const [customWord, setCustomWord] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState(false);
     const [numberOfWords, setNumberOfWords] = useState(0);
 
     const [words, setWords] = useState([]);
@@ -48,6 +51,7 @@ export default function Home() {
     const [signupModalHelper, setSignupModalHelper] = useState(true);
     const [signupModal, setSignupModal] = useState(false);
     const [loginModalHelper, setLoginModalHelper] = useState(true);
+    const [customWordExistsError, setcustomWordExistsError] = useState(false);
 
     const [isHolding, setIsHolding] = useState(false);
     const [operation, setOperation] = useState(null);
@@ -252,11 +256,17 @@ export default function Home() {
     };
 
     const handleInputCustomWordChange = (event) => {
+        setSuccessCutsomWordMessage(false);
         setCustomWord(event.target.value);
+        setcustomWordExistsError(false);
+        setErrorMessage(false);
+        setEmptyWordMessage(false);
     };
 
     const handleGenerateClick = async () => {
-        setErrorMessage("");
+        setEmptyWordMessage(false);
+        setSuccessCutsomWordMessage(false);
+        setErrorMessage(false);
         if (onlyUseCustomWords) {
             try {
                 setWords([]);
@@ -298,26 +308,37 @@ export default function Home() {
     };
 
     const handleCustomWord = async (event) => {
+        setEmptyWordMessage(false);
+        setSuccessCutsomWordMessage(false);
+        setErrorMessage(false);
+        setcustomWordExistsError(false);
         event.preventDefault();
+        if (customWord.trim() === "") {
+            setEmptyWordMessage(true);
+            return;
+        }
         try {
+            setloadingCustomWord(true);
             const response = await axios.post(`/api/create-custom-word`, {
                 customWord: customWord,
             });
             if (response.status === 201) {
                 setCustomWord("");
-                setErrorMessage("");
+                setErrorMessage(false);
+                setSuccessCutsomWordMessage(true);
             }
         } catch (error) {
-            if (
-                error.response &&
-                error.response.status === 400 &&
-                error.response.data.exists
-            ) {
-                setErrorMessage("Custom word already exists");
+            if (error.response && error.response.status === 401) {
+                setLoginModal(true);
+            } else if (error.response && error.response.status === 400) {
+                setErrorMessage(true);
+                setcustomWordExistsError(true);
             } else {
-                setErrorMessage("");
+                setErrorMessage(false);
                 setLoginModal(true);
             }
+        } finally {
+            setloadingCustomWord(false);
         }
     };
 
@@ -330,10 +351,17 @@ export default function Home() {
             rerun();
         } catch (error) {
             console.log(error);
+        } finally {
+            setErrorMessage(false);
+            setcustomWordExistsError(false);
+            setEmptyWordMessage(false);
         }
     };
     const handleLogin = () => {
         setLoginModal(true);
+        setErrorMessage(false);
+        setcustomWordExistsError(false);
+        setEmptyWordMessage(false);
     };
     const handleLoginFalse = () => {
         setLoginModal(false);
@@ -356,7 +384,7 @@ export default function Home() {
             >
                 <header className="header">
                     <div className="h1-container">
-                        <h1 className="text-5xl">
+                        <h1>
                             {language === "English"
                                 ? "Charades"
                                 : language === "Russian"
@@ -396,11 +424,11 @@ export default function Home() {
                         )}
                     </div>
                 </header>
-                <div className="custom-word-container">
+                <div className="custom-word-container ">
                     <form>
                         <label
                             htmlFor="custom-word"
-                            className="custom-word-label"
+                            className={`custom-word-label`}
                         >
                             {language === "English"
                                 ? "Create custom charades word:"
@@ -411,9 +439,14 @@ export default function Home() {
                                 : "Create custom charades word:"}
                         </label>
                         <div className="custom-word-container-inside">
-                            <div className="custom-word-error-container">
+                            <div className={`custom-word-error-container `}>
                                 <input
                                     type="text"
+                                    className={`${
+                                        customWordExistsError
+                                            ? "custom-word-error"
+                                            : ""
+                                    }`}
                                     id="custom-word"
                                     name="custom-word"
                                     placeholder={
@@ -428,8 +461,49 @@ export default function Home() {
                                     value={customWord}
                                     onChange={handleInputCustomWordChange}
                                 ></input>
+                                <span id="empty-input-field">
+                                    {emptyWordMessage
+                                        ? language === "English"
+                                            ? "Please enter a word"
+                                            : language === "Russian"
+                                            ? "Пожалуйста, введите слово"
+                                            : language === "Latvian"
+                                            ? "Lūdzu, ievadiet vārdu"
+                                            : ""
+                                        : ""}
+                                </span>
+                                <span id="custom-word-success">
+                                    {successCutsomWordMessage
+                                        ? language === "English"
+                                            ? "Successfully created a word!"
+                                            : language === "Russian"
+                                            ? "Слово создано!"
+                                            : language === "Latvian"
+                                            ? "Veiksmīgi tika izveidots vārds!"
+                                            : ""
+                                        : ""}
+                                </span>
+                                <span id="loading-custom-word">
+                                    {loadingCustomWord
+                                        ? language === "English"
+                                            ? "Creating custom word..."
+                                            : language === "Russian"
+                                            ? "Создание пользовательского слова..."
+                                            : language === "Latvian"
+                                            ? "Tiek izveidots vārds..."
+                                            : ""
+                                        : ""}
+                                </span>
                                 <span id="already-exists-error">
-                                    {errorMessage}
+                                    {errorMessage
+                                        ? language === "English"
+                                            ? "Custom word already exists"
+                                            : language === "Russian"
+                                            ? "Пользовательское слово уже существует"
+                                            : language === "Latvian"
+                                            ? "Vārds jau eksistē"
+                                            : ""
+                                        : ""}
                                 </span>
                             </div>
                             <input

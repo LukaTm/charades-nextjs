@@ -19,11 +19,15 @@
     src: url(../../fonts/Inter-VariableFont_slnt_wght.ttf);
 }
 
+:root {
+    --margin-top: 155px;
+}
+
 .dark-background {
     background-color: rgba(0, 0, 0, 0.678);
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: calc(100vh + var(--margin-top));
     top: 0;
     left: 0;
     z-index: 10;
@@ -33,14 +37,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 150px;
+    height: 100vh;
+    margin-top: var(--margin-top);
 }
 
 .controls {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    background-color: rgb(222, 229, 233);
+    /* background-color: rgb(222, 229, 233); */
+    background-color: rgb(178, 191, 207);
     box-shadow: 1px 1px 10px 0px rgb(155, 154, 154);
     padding: 50px;
     border-radius: 10px;
@@ -51,12 +57,22 @@
 .custom-word-container {
     display: flex;
     margin-bottom: 20px;
-    background-color: rgb(222, 229, 233);
+    background-color: rgb(178, 191, 207);
     box-shadow: 1px 1px 10px 0px rgb(155, 154, 154);
     padding: 30px;
     border-radius: 10px;
     margin-left: 50px;
     margin-right: 50px;
+}
+
+#empty-input-field {
+    color: red;
+}
+
+#custom-word-success {
+    color: green;
+    font-weight: 500;
+    margin-top: 3px;
 }
 
 .custom-word-container-inside {
@@ -68,11 +84,16 @@
     flex-direction: column;
 }
 
+.custom-word-error {
+    border: 2px solid red !important;
+}
+
 #custom-word {
-    padding: 0.5rem;
+    padding: 0.4rem;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-top: 5px;
+    font-size: 0.9em;
 }
 
 #already-exists-error {
@@ -134,7 +155,7 @@ div label {
 .select-drop-down label,
 .custom-word-label {
     margin-right: 10px;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 600;
     color: #110b0b;
 }
@@ -158,25 +179,25 @@ div label {
 
 .generate-btn,
 #custom-word-submit-btn {
-    padding: 8px 16px;
-    font-size: 16px;
+    padding: 5px 16px;
+    font-size: 15px;
     font-weight: bold;
     color: #fff;
-    background-color: #4635dc;
+    background-color: #30346d;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-left: 15px;
     margin-top: 3px;
-    align-self: baseline;
+    align-self: center;
 }
 
 .generate-btn:hover,
 .login-btn:hover,
 .logout-btn:hover,
 #custom-word-submit-btn:hover {
-    background-color: #6f64d3;
+    background-color: #3f4383;
 }
 
 .word-list {
@@ -215,7 +236,7 @@ div label {
     display: flex;
     width: 100%;
     align-items: center;
-    background-color: #ece1e1;
+    background-color: #48658f;
     position: relative;
     margin-bottom: 30px;
     height: 70px;
@@ -233,11 +254,14 @@ div label {
     transform: translateY(-50%);
     position: absolute;
     text-align: center;
+    color: #ffffff;
 }
 
 h1 {
     margin: 0 auto;
     font-family: my-custom-font2;
+    font-weight: bold;
+    font-size: 2.5em;
 }
 
 .header-btn-container {
@@ -248,11 +272,11 @@ h1 {
 
 .logout-btn,
 .login-btn {
-    padding: 8px 16px;
-    font-size: 16px;
+    padding: 6px 16px;
+    font-size: 15px;
     font-weight: bold;
     color: #fff;
-    background-color: #4635dc;
+    background-color: #282c5f;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -261,13 +285,14 @@ h1 {
     z-index: 0;
 }
 
-.logout-btn:hover {
-    background-color: #6f64d3;
+.logout-btn:hover,
+.login-btn:hover {
+    background-color: #3f4383;
 }
 
 @media (max-width: 877px) {
     .controls {
-        width: 93%;
+        width: 84%;
         margin-left: 20px;
         margin-right: 20px;
         justify-content: center;
@@ -280,8 +305,11 @@ h1 {
     .controls .generate-btn {
         font-size: 2vw;
     }
+    /* .generate-btn {
+        font-size: 1vw;
+    } */
     .controls button {
-        font-size: 2.4vw;
+        font-size: 1.8vw;
     }
     .controls select {
         font-size: 1.8vw;
@@ -337,22 +365,6 @@ h1 {
     }
 }
 
-/* @media (max-width: 510px) {
-    .controls,
-    .controls select,
-    .controls .num-words {
-        font-size: 0.9em;
-    }
-    .num-words button {
-        font-size: 20px;
-        width: 1.3em;
-        height: 1.3em;
-    }
-    .num-submit-outer-container {
-        flex-direction: column;
-    }
-} */
-
 @media (max-width: 556px) {
     .controls {
         width: calc(100vw - 40px);
@@ -381,11 +393,11 @@ h1 {
 
 @media (max-width: 467px) {
     .h1-container h1 {
-        font-size: 10vw;
+        font-size: 8vw;
     }
     .header-btn-container .logout-btn,
     .header-btn-container .login-btn {
-        font-size: 4vw;
+        font-size: 3vw;
     }
     .controls {
         flex-direction: column;
@@ -423,14 +435,16 @@ h1 {
     }
 
     .header-btn-container .login-btn {
-        font-size: 4vw;
+        font-size: 3vw;
     }
 }
-@media (max-width: 236px) {
+@media (max-width: 286px) {
     .header-btn-container .logout-btn,
     .header-btn-container .login-btn {
         font-size: 0.55em;
     }
+}
+@media (max-width: 378px) {
 }
 @media (max-width: 300px) {
     .word-item.one-words-size {
@@ -443,13 +457,26 @@ h1 {
         font-size: 0.95em;
     }
 }
+
 @media (max-width: 197px) {
     .controls {
         width: 180px;
     }
 }
-@media (max-width: 168px) {
+@media (max-width: 237px) {
     .custom-word-container {
         width: 140px;
+    }
+}
+
+/*  MEDIA HEIGHT */
+@media (max-height: 725px) {
+    :root {
+        --margin-top: calc(35vh - 100px);
+    }
+}
+@media (max-height: 552px) {
+    :root {
+        --margin-top: 93px;
     }
 }

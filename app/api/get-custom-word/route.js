@@ -14,7 +14,7 @@ export const POST = async (req, res) => {
     if (!session) {
         return NextResponse.json(
             { message: "Need to log in to get custom words" },
-            { status: 400 }
+            { status: 401 }
         );
     }
     const userIdString = session.user.name;

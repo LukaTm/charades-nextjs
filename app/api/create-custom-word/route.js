@@ -15,7 +15,7 @@ export const POST = async (req) => {
     if (!session) {
         return NextResponse.json(
             { message: "Need to log in to create custom words" },
-            { status: 400 }
+            { status: 401 }
         );
     }
 
@@ -33,10 +33,12 @@ export const POST = async (req) => {
             (post) => post.content === customWord
         );
         if (existingCustomName) {
-            return res.status(400).json({
-                message: "Custom Word already exists for the user",
-                exists: true,
-            });
+            return NextResponse.json(
+                {
+                    message: "Custom Word already exists for the user",
+                },
+                { status: 400 }
+            );
         } else {
             const customName = new CustomName({
                 content: customWord,

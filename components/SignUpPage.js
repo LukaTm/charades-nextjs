@@ -1,4 +1,4 @@
-import "./SignUpPage.css";
+import "./LoginAndSignup.css";
 import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";

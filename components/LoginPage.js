@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react";
 
 import Link from "next/link";
 import axios from "axios";
-import "./LoginPage.css";
+import "./LoginAndSignup.css";
 
 // TITLE and DESCROPTION
 
