@@ -17,9 +17,8 @@ import { useSession } from "next-auth/react";
 import { useCookies } from "react-cookie";
 
 export default function Home() {
-    // CONTEXT
-    const { rerun, SetTheRerun, defaultLangRef, defaultLang, lang, setLang } =
-        useContext(AuthContext);
+    //  USER SESSION
+    const { data: session, status } = useSession();
 
     // Routing AND Params
     const router = useRouter();
@@ -41,7 +40,7 @@ export default function Home() {
 
     const [numWords, setNumWords] = useState(1);
     const [category, setCategory] = useState("Easy");
-    const [language, setLanguage] = useState("English");
+    const [language, setLanguage] = useState("Latvian");
     const [customWord, setCustomWord] = useState("");
     const [errorMessage, setErrorMessage] = useState(false);
     const [numberOfWords, setNumberOfWords] = useState(0);
@@ -61,8 +60,23 @@ export default function Home() {
     const [onlyUseCustomWordsValue, setOnlyUseCustomWordsValue] = useState("");
     const [onlyUseCustomWords, setOnlyUseCustomWords] = useState(false);
 
-    //  USER SESSION
-    const { data: session, status } = useSession();
+    const defaultLangRef = useRef("lv");
+    const [rerun, setRerun] = useState(false);
+
+    const [lang, setLang] = useState("");
+    const SetTheRerun = () => {
+        setRerun(!rerun);
+    };
+
+    let defaultLang = defaultLangRef.current;
+
+    useEffect(() => {
+        const search = searchParams.get("lang");
+        setLang(search);
+        if (lang) {
+            defaultLang = lang;
+        }
+    }, [language]);
 
     useEffect(() => {
         if (isLoaded) {
@@ -136,7 +150,7 @@ export default function Home() {
         } else if (language === "Latvian") {
             params.set("lang", "lv");
         } else {
-            params.set("lang", "eng");
+            params.set("lang", "lv");
         }
 
         window.history.replaceState({}, "", `?${params.toString()}`);
@@ -161,7 +175,8 @@ export default function Home() {
                 setLanguage("Latvian");
                 break;
             default:
-                setLanguage("English");
+                console.log("huih");
+                setLanguage("Latvian");
         }
     }, [lang]);
 
