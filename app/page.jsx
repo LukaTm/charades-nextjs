@@ -145,7 +145,9 @@ export default function Home() {
             params.set("lang", "lv");
         }
 
-        router.replace({ query: params });
+        const path = `/?${params.toString()}`; // Build the new path
+
+        router.replace(path);
     }, [language]);
 
     // lang about the current URL params
@@ -167,7 +169,6 @@ export default function Home() {
                 setLanguage("Latvian");
                 break;
             default:
-                console.log("huih");
                 setLanguage("Latvian");
         }
     }, [lang]);
