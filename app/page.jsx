@@ -5,9 +5,9 @@ import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { signOut } from "next-auth/react";
 
-import LoginPage from "../../components/LoginPage";
-import SignUpPage from "../../components/SignUpPage";
-import AuthContext from "../../store/context";
+import LoginPage from "@/components/LoginPage";
+import SignUpPage from "../components/SignUpPage";
+import AuthContext from "../store/context";
 
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
@@ -36,7 +36,6 @@ export default function Home() {
     const [statusHelper, setStatusHelper] = useState(true);
     const [userStatus, setUserStatus] = useState("");
     const [cookies] = useCookies(["token"]);
-    const currentURL = window.location.href;
 
     const [numWords, setNumWords] = useState(1);
     const [category, setCategory] = useState("Easy");
@@ -89,9 +88,9 @@ export default function Home() {
             }
         }
         // pathname INSTEAD of FULL URL
-        if (window.location.pathname === "/main") {
-            // Only navigate to /main with query params on first run
-            router.push(`/main?lang=${defaultLang}`);
+        if (router.pathname === "/") {
+            // Only navigate to / with query params on first run
+            router.push(`/?lang=${defaultLang}`);
         }
     }, [isLoaded, defaultLang, status, session]);
 
@@ -108,7 +107,7 @@ export default function Home() {
             setStatusHelper(false);
         }
         if (guestAccount && statusHelper) {
-            router.push(`/main?lang=${defaultLang}`);
+            router.push(`/?lang=${defaultLang}`);
         } else {
             setIsAuthenticated(true);
             // Function to check authentication status with the server
@@ -119,14 +118,7 @@ export default function Home() {
                 setIsAuthenticated(false);
             }
         }
-    }, [
-        guestAccount,
-        defaultLang,
-        currentURL,
-        rerun,
-        removeGuestUser,
-        statusHelper,
-    ]);
+    }, [guestAccount, defaultLang, rerun, removeGuestUser, statusHelper]);
 
     const handleOptionChange = (event) => {
         const selectedValue = event.target.value;
@@ -137,7 +129,7 @@ export default function Home() {
     const logInWithoutAccount = () => {
         setGuestAccount(true);
         localStorage.setItem("guestAccount", JSON.stringify(true));
-        router.push(`/main?lang=${defaultLang}`);
+        router.push(`/?lang=${defaultLang}`);
     };
 
     useEffect(() => {
@@ -153,7 +145,7 @@ export default function Home() {
             params.set("lang", "lv");
         }
 
-        window.history.replaceState({}, "", `?${params.toString()}`);
+        router.replace({ query: params });
     }, [language]);
 
     // lang about the current URL params

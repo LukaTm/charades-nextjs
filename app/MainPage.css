@@ -1,22 +1,22 @@
 @font-face {
     font-family: my-custom-font;
-    src: url(../../fonts/Heebo-VariableFont_wght.ttf);
+    src: url(../fonts/Heebo-VariableFont_wght.ttf);
 }
 @font-face {
     font-family: my-custom-font2;
-    src: url(../../fonts/Kanit-Medium.ttf);
+    src: url(../fonts/Kanit-Medium.ttf);
 }
 @font-face {
     font-family: my-custom-font3;
-    src: url(../../fonts/PressStart2P-Regular.ttf);
+    src: url(../fonts/PressStart2P-Regular.ttf);
 }
 @font-face {
     font-family: my-custom-font4;
-    src: url(../../fonts/SecularOne-Regular.ttf);
+    src: url(../fonts/SecularOne-Regular.ttf);
 }
 @font-face {
     font-family: my-custom-font5;
-    src: url(../../fonts/Inter-VariableFont_slnt_wght.ttf);
+    src: url(../fonts/Inter-VariableFont_slnt_wght.ttf);
 }
 
 :root {
