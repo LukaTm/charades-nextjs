@@ -7,7 +7,6 @@ import { signOut } from "next-auth/react";
 
 import LoginPage from "@/components/LoginPage";
 import SignUpPage from "../components/SignUpPage";
-import AuthContext from "../store/context";
 
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
