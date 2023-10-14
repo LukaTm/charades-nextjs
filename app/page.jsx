@@ -703,6 +703,7 @@ export default function Home() {
                     setSignupModal={setSignupModal}
                     setLoginModal={setLoginModal}
                     setRemoveGuestUser={setRemoveGuestUser}
+                    language={language}
                 />
             )}
             {signupModal && (
@@ -712,6 +713,7 @@ export default function Home() {
                     setLoginModalHelper={setLoginModalHelper}
                     loginModalHelper={loginModalHelper}
                     setSignupModal={setSignupModal}
+                    language={language}
                 />
             )}
         </>

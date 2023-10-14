@@ -13,6 +13,7 @@ export default function SignUpPage({
     loginModalHelper,
     setLoginModal,
     setSignupModal,
+    language,
 }) {
     const router = useRouter();
     const currentURL = window.location.href;
@@ -113,11 +114,23 @@ export default function SignUpPage({
                 }
                 onClick={handleSignupFalse}
             ></div>
-            <h1 className="login-title">Sign Up</h1>
+            <h1 className="login-title">
+                {language === "English"
+                    ? "Sign Up"
+                    : language === "Russian"
+                    ? "Зарегистрироваться"
+                    : "Reģistrēties"}
+            </h1>
             <form onSubmit={handleSignUp} className="login-form">
                 <input
                     type="text"
-                    placeholder="Nickname"
+                    placeholder={
+                        language === "English"
+                            ? "Nickname"
+                            : language === "Russian"
+                            ? "Имя пользователя"
+                            : "Lietotājvārds"
+                    }
                     value={nicknameValue}
                     onChange={nicknameChangeHandler}
                     onBlur={nicknameBlurHandler}
@@ -129,7 +142,13 @@ export default function SignUpPage({
                 )}
                 <input
                     type="email"
-                    placeholder="Email"
+                    placeholder={
+                        language === "English"
+                            ? "Email"
+                            : language === "Russian"
+                            ? "Электронная почта"
+                            : "E-pasts"
+                    }
                     value={emailValue}
                     onChange={emailChangeHandler}
                     // WHEN LOSES FOCUS
@@ -142,7 +161,13 @@ export default function SignUpPage({
                 )}
                 <input
                     type="password"
-                    placeholder="Password"
+                    placeholder={
+                        language === "English"
+                            ? "Password"
+                            : language === "Russian"
+                            ? "Пароль"
+                            : "Parole"
+                    }
                     value={passwordValue}
                     onChange={passwordChangeHandler}
                     onBlur={passwordBlurHandler}
@@ -153,18 +178,30 @@ export default function SignUpPage({
                     <p className="error-text">Be at least 6 characters</p>
                 )}
                 <button type="submit" className="login-button">
-                    Sign Up
+                    {language === "English"
+                        ? "Sign Up"
+                        : language === "Russian"
+                        ? "Зарегистрироваться"
+                        : "Reģistrēties"}
                 </button>
             </form>
             <p className="login-signup">
                 {loginModalHelper ? (
                     <span>
-                        Already have an account?
+                        {language === "English"
+                            ? "Already have an account?"
+                            : language === "Russian"
+                            ? "Уже есть аккаунт?"
+                            : "Jau ir konts?"}
                         <span
                             className="signup-link custom-link"
                             onClick={Login}
                         >
-                            Log in
+                            {language === "English"
+                                ? "Log in"
+                                : language === "Russian"
+                                ? "Войти"
+                                : "Pieslēgties"}
                         </span>
                     </span>
                 ) : (

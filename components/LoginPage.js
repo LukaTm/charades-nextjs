@@ -14,6 +14,7 @@ function LoginPage({
     setLoginModal,
     setRemoveGuestUser,
     loginModal,
+    language,
 }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -60,11 +61,23 @@ function LoginPage({
                 }
                 onClick={handleLoginFalse}
             ></div>
-            <h1 className="login-title">Login</h1>
+            <h1 className="login-title">
+                {language === "English"
+                    ? "Login"
+                    : language === "Russian"
+                    ? "Вход"
+                    : "Ieiet"}
+            </h1>
             <form onSubmit={handleLogin} className="login-form">
                 <input
                     type="email"
-                    placeholder="Email"
+                    placeholder={
+                        language === "English"
+                            ? "Email"
+                            : language === "Russian"
+                            ? "Электронная почта"
+                            : "E-pasts"
+                    }
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -72,32 +85,58 @@ function LoginPage({
                 />
                 <input
                     type="password"
-                    placeholder="Password"
+                    placeholder={
+                        language === "English"
+                            ? "Password"
+                            : language === "Russian"
+                            ? "Пароль"
+                            : "Parole"
+                    }
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                     className="login-input"
                 />
                 <button type="submit" className="login-button">
-                    Log In
+                    {language === "English"
+                        ? "Log In"
+                        : language === "Russian"
+                        ? "Войти"
+                        : "Ieiet"}
                 </button>
             </form>
             <p className="login-signup">
                 {signupModalHelper ? (
                     <span>
-                        Don't have an account?
+                        {language === "English"
+                            ? "Don't have an account?"
+                            : language === "Russian"
+                            ? "Нет аккаунта?"
+                            : "Nav konta?"}
                         <span
                             className="signup-link custom-link"
                             onClick={Signup}
                         >
-                            Sign up
+                            {language === "English"
+                                ? "Sign up"
+                                : language === "Russian"
+                                ? "Зарегистрироваться"
+                                : "Reģistrēties"}
                         </span>
                     </span>
                 ) : (
                     <span>
-                        Don't have an account?
+                        {language === "English"
+                            ? "Don't have an account?"
+                            : language === "Russian"
+                            ? "Нет аккаунта?"
+                            : "Nav konta?"}
                         <Link href="/signup" className="signup-link">
-                            Sign up
+                            {language === "English"
+                                ? "Sign up"
+                                : language === "Russian"
+                                ? "Зарегистрироваться"
+                                : "Reģistrēties"}
                         </Link>
                     </span>
                 )}
@@ -106,7 +145,11 @@ function LoginPage({
                 className="continue-without-login-button"
                 onClick={handleContinueWithoutLogin}
             >
-                Continue Without Login
+                {language === "English"
+                    ? "Continue Without Login"
+                    : language === "Russian"
+                    ? "Продолжить без входа"
+                    : "Turpināt bez ienākšanas"}
             </button>
         </div>
     );
