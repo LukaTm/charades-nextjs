@@ -10,7 +10,6 @@ import SignUpPage from "../components/SignUpPage";
 
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import { useContext } from "react";
 import { useSession } from "next-auth/react";
 
 import { useCookies } from "react-cookie";
@@ -33,11 +32,11 @@ export default function Home() {
     const [emptyWordMessage, setEmptyWordMessage] = useState(false);
     const [guestAccount, setGuestAccount] = useState(true);
     const [statusHelper, setStatusHelper] = useState(true);
-    const [userStatus, setUserStatus] = useState("");
     const [cookies] = useCookies(["token"]);
 
     const [numWords, setNumWords] = useState(1);
     const [category, setCategory] = useState("Easy");
+
     const [language, setLanguage] = useState("Latvian");
     const [customWord, setCustomWord] = useState("");
     const [errorMessage, setErrorMessage] = useState(false);
@@ -61,20 +60,17 @@ export default function Home() {
     const defaultLangRef = useRef("lv");
     const [rerun, setRerun] = useState(false);
 
+    useEffect(() => {
+        const search = searchParams.get("lang");
+        setLang(search);
+    }, []);
+
     const [lang, setLang] = useState("");
     const SetTheRerun = () => {
         setRerun(!rerun);
     };
 
     let defaultLang = defaultLangRef.current;
-
-    useEffect(() => {
-        const search = searchParams.get("lang");
-        setLang(search);
-        if (lang) {
-            defaultLang = lang;
-        }
-    }, [language]);
 
     useEffect(() => {
         if (isLoaded) {
@@ -148,13 +144,6 @@ export default function Home() {
 
         router.replace(path);
     }, [language]);
-
-    // lang about the current URL params
-    // const { lang } = router.query;
-    useEffect(() => {
-        const search = searchParams.get("lang");
-        setLang(search);
-    }, []);
 
     useEffect(() => {
         switch (lang) {
@@ -259,6 +248,7 @@ export default function Home() {
     };
 
     const handleLanguageChange = (event) => {
+        console.log(event.target.value);
         setLanguage(event.target.value);
     };
 
@@ -390,6 +380,17 @@ export default function Home() {
                 }`}
             >
                 <header className="header">
+                    <div id="language_container" className="select-drop-down">
+                        <select
+                            id="language"
+                            value={language}
+                            onChange={handleLanguageChange}
+                        >
+                            <option value="English">English</option>
+                            <option value="Russian">Russian</option>
+                            <option value="Latvian">Latvian</option>
+                        </select>
+                    </div>
                     <div className="h1-container">
                         <h1>
                             {language === "English"
@@ -532,18 +533,10 @@ export default function Home() {
                 </div>
                 <div className="controls">
                     <div className="select-drop-down">
-                        <select
-                            id="language"
-                            value={language}
-                            onChange={handleLanguageChange}
+                        <div
+                            id="use_custom_words_container"
+                            className="custom_word_container flex items-baseline"
                         >
-                            <option value="English">English</option>
-                            <option value="Russian">Russian</option>
-                            <option value="Latvian">Latvian</option>
-                        </select>
-                    </div>
-                    <div className="select-drop-down">
-                        <div className="flex items-baseline mb-2">
                             <label htmlFor="only-custom-words">
                                 {language === "English"
                                     ? "Only use custom words:"
@@ -579,9 +572,9 @@ export default function Home() {
                                 </option>
                             </select>
                         </div>
-                        <div>
+                        <div className="category_container">
                             {!onlyUseCustomWords && (
-                                <>
+                                <div className="difficulty_container">
                                     <label htmlFor="category">
                                         {language === "English"
                                             ? "Difficulty:"
@@ -624,7 +617,7 @@ export default function Home() {
                                                 : "Hard"}
                                         </option>
                                     </select>
-                                </>
+                                </div>
                             )}
                         </div>
                     </div>
