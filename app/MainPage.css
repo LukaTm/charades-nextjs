@@ -344,23 +344,39 @@ h1 {
     }
 }
 
-@media (max-width: 775px) {
+@media (max-width: 832px) {
     .controls {
         padding-left: 20vw;
         padding-right: 20vw;
     }
 }
+@media (max-width: 800px) {
+    .controls {
+        padding-left: 16vw;
+        padding-right: 16vw;
+    }
+}
+@media (max-width: 760px) {
+    .controls {
+        padding-left: 14vw;
+        padding-right: 14vw;
+    }
+}
+@media (max-width: 720px) {
+    .controls {
+        padding-left: 12vw;
+        padding-right: 12vw;
+    }
+}
 
-@media (max-width: 635px) {
+@media (max-width: 641px) {
     .controls label {
         font-size: 2.4vw;
     }
     .controls .generate-btn {
         font-size: 2.4vw;
     }
-    /* .generate-btn {
-        font-size: 1vw;
-    } */
+
     .controls button {
         font-size: 4vw;
     }
@@ -368,26 +384,30 @@ h1 {
         font-size: 2.5vw;
     }
 }
-@media (max-width: 560px) {
-    .controls {
-        padding-left: 17vw;
-        padding-right: 17vw;
-    }
-}
 
-@media (max-width: 600px) {
-    .word-item.one-words-size {
-        font-size: 7vw;
+@media (max-width: 606px) {
+    .select-drop-down label {
+        margin-right: 0px;
     }
-    .word-item.ten-words-size {
-        font-size: 3.5vw;
+    #use_custom_words_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
-    .word-item.five-words-size {
-        font-size: 5vw;
-    }
-}
 
-@media (max-width: 566px) {
+    .difficulty_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #only-custom-words {
+        margin-top: 5px;
+    }
+    #category {
+        margin-top: 3px;
+    }
+
     .num-submit-outer-container {
         flex-direction: column;
     }
@@ -402,51 +422,28 @@ h1 {
     .controls .generate-btn {
         font-size: 15px;
     }
-    /* .generate-btn {
-        font-size: 1vw;
-    } */
     .controls button {
         font-size: 22px;
     }
     .controls select {
         font-size: 14px;
     }
+    .word-item.one-words-size {
+        font-size: 7vw;
+    }
+    .word-item.ten-words-size {
+        font-size: 3.5vw;
+    }
+    .word-item.five-words-size {
+        font-size: 5vw;
+    }
 }
 
 @media (max-width: 500px) {
     .custom-word-container {
-        width: calc(100% - 90px);
+        width: calc(100% - 110px);
     }
 
-    .custom-word-container * {
-        font-size: 3.5vw;
-    }
-    #custom-word-submit-btn {
-        font-size: 0.9rem;
-    }
-    .controls {
-        padding-left: 16vw;
-        padding-right: 16vw;
-    }
-}
-
-@media (max-width: 450px) {
-    .controls {
-        padding-left: 14vw;
-        padding-right: 14vw;
-    }
-}
-@media (max-width: 430px) {
-    .controls {
-        padding-left: 8vw;
-        padding-right: 8vw;
-    }
-}
-
-@media (max-width: 467px) {
-    .h1-container h1 {
-        font-size: 8vw;
-    }
     .header-btn-container .logout-btn,
     .header-btn-container,
     #language {
@@ -460,22 +457,11 @@ h1 {
     #custom-word-submit-btn {
         font-size: 0.8rem;
     }
-}
 
-@media (max-width: 432px) {
-    .word-item.ten-words-size {
-        font-size: 1em;
-    }
-    .word-item.five-words-size {
-        font-size: 1.2em;
-    }
-}
-
-@media (max-width: 430px) {
     .custom-word-container {
         display: flex;
         flex-direction: column;
-        width: calc(100vw - 90px);
+        width: calc(100vw - 140px);
     }
     .custom-word-container-inside {
         flex-direction: column;
@@ -484,6 +470,42 @@ h1 {
         margin: 0;
         margin-top: 5px;
     }
+    .h1-container h1 {
+        font-size: 7vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-btn-container .logout-btn,
+    .header-btn-container,
+    #language {
+        font-size: 3vw;
+    }
+
+    .custom-word-container * {
+        font-size: 0.95em;
+        font-weight: bold;
+    }
+    #custom-word-submit-btn {
+        font-size: 0.8rem;
+    }
+    .controls {
+        padding-left: 8vw;
+        padding-right: 8vw;
+    }
+}
+
+@media (max-width: 450px) {
+    .controls {
+        padding-left: 6vw;
+        padding-right: 6vw;
+    }
+    .word-item.ten-words-size {
+        font-size: 1em;
+    }
+    .word-item.five-words-size {
+        font-size: 1.2em;
+    }
 
     .header-btn-container .login-btn,
     #language {
@@ -491,20 +513,7 @@ h1 {
     }
 }
 
-@media (max-width: 430px) {
-    .h1-container h1 {
-        font-size: 7vw;
-    }
-}
-
 @media (max-width: 380px) {
-    .controls {
-        padding-left: 7vw;
-        padding-right: 7vw;
-    }
-}
-
-@media (max-width: 360px) {
     .controls {
         padding-left: 6vw;
         padding-right: 6vw;
@@ -516,9 +525,7 @@ h1 {
     .controls .generate-btn {
         font-size: 12px;
     }
-    /* .generate-btn {
-        font-size: 1vw;
-    } */
+
     .controls button {
         font-size: 19px;
     }
@@ -527,13 +534,13 @@ h1 {
     }
 }
 
-@media (max-width: 330px) {
+@media (max-width: 365px) {
     #custom-word-submit-btn {
         padding: 7px 12px 7px 12px;
     }
     #custom-word {
         padding: 4px 6px 4px 6px;
-        width: 54vw;
+        width: 50vw;
     }
     #language,
     button.login-btn,
@@ -542,6 +549,24 @@ h1 {
         margin-right: 7px;
     }
 }
+@media (max-width: 345px) {
+    .custom-word-container {
+        width: 13rem;
+    }
+    .break-word {
+        display: block;
+        margin-top: -0.4em;
+    }
+    .header-btn-container .login-btn {
+        font-size: 0.7rem;
+        /* padding: 3px 5px 3px 5px; */
+    }
+    #language {
+        font-size: 0.7rem;
+        /* padding: 3px 0px 3px 0px; */
+    }
+}
+
 @media (max-width: 315px) {
     #use_custom_words_container {
         display: flex;
@@ -556,6 +581,14 @@ h1 {
     .generate-btn {
         margin-top: 6px;
     }
+    .header-btn-container .login-btn {
+        font-size: 0.65rem;
+        padding: 4px 12px 4px 12px;
+    }
+    #language {
+        font-size: 0.55rem;
+        /* padding: 3px 0px 3px 0px; */
+    }
 }
 
 @media (max-width: 300px) {
@@ -567,6 +600,12 @@ h1 {
     }
     .word-item.ten-words-size {
         font-size: 0.95em;
+    }
+}
+
+@media (max-width: 250px) {
+    .custom-word-container {
+        width: 160px;
     }
 }
 
@@ -602,16 +641,38 @@ h1 {
         width: 100vw;
         margin-right: 14px;
     }
-}
 
-@media (max-width: 250px) {
-    .custom-word-container {
-        width: 160px;
+    .break-word {
+        display: inline;
+    }
+
+    .header-btn-container .login-btn,
+    .logout-btn {
+        font-size: 0.65rem;
+        padding: 3px 5px 3px 5px;
+    }
+    #language {
+        font-size: 0.5rem;
+        padding: 3px 0px 3px 0px;
+    }
+    .header-btn-container .login-btn,
+    .logout-btn {
+        margin-top: 0px;
     }
 }
 
 @media (max-width: 200px) {
+    .h1-container {
+        width: 100%;
+        top: 50%;
+        transform: translateY(-55%) translatex(-20%);
+        position: absolute;
+        color: #ffffff;
+    }
     .custom-word-container {
         width: 120px;
+    }
+    .break-word {
+        display: block;
     }
 }

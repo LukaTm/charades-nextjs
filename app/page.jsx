@@ -393,13 +393,18 @@ export default function Home() {
                     </div>
                     <div className="h1-container">
                         <h1>
-                            {language === "English"
-                                ? "Charades"
-                                : language === "Russian"
-                                ? "Шарады"
-                                : language === "Latvian"
-                                ? "Mēmais šovs"
-                                : "Charades"}
+                            {language === "English" ? (
+                                "Charades"
+                            ) : language === "Russian" ? (
+                                "Шарады"
+                            ) : language === "Latvian" ? (
+                                <span>
+                                    Mēmais{" "}
+                                    <span className="break-word">šovs</span>
+                                </span>
+                            ) : (
+                                "Charades"
+                            )}
                         </h1>
                     </div>
 

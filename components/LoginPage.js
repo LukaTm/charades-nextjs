@@ -1,11 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 
 import Link from "next/link";
-import axios from "axios";
 import "./LoginAndSignup.css";
-
-// TITLE and DESCROPTION
 
 function LoginPage({
     logInWithoutAccount,
